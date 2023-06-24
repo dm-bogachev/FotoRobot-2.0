@@ -39,7 +39,7 @@ class Camera:
             self.__load_defaults()
 
     def __camera_init(self):
-        self.__camera = cv2.VideoCapture(self.id)
+        self.__camera = cv2.VideoCapture(self.id, cv2.CAP_DSHOW)
         self.__camera.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
         self.__camera.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
 
@@ -60,6 +60,7 @@ class Camera:
         if ret:
             return frame
         print('Bad frame received!!!')
+        self.is_active = False
         return None
 
     def save_settings(self):

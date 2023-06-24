@@ -8,6 +8,8 @@ class GUI(QWidget):
     __CONNECTION_STATE_CONNECTED_STYLE = "border-radius: 10px;\nbackground-color: rgb(0, 255, 0);\n\n\n"
     __CONNECTION_STATE_DISCONNECTED_TEXT = "ROBOT IS NOT CONNECTED"
     __CONNECTION_STATE_DISCONNECTED_STYLE = "border-radius: 10px;\nbackground-color: rgb(255, 0, 0);\n\n\n"
+    __CAMERA_STATE_CONNECTED_TEXT = "CAMERA IS ACTIVE"
+    __CAMERA_STATE_DISCONNECTED_TEXT = "CAMERA IS NOT ACTIVE"
 
     def __init__(self):
         super().__init__()
@@ -39,6 +41,16 @@ class GUI(QWidget):
             self.ui.label_connection_state.setText(self.__CONNECTION_STATE_DISCONNECTED_TEXT)
             self.ui.label_connection_state_lamp.setStyleSheet(self.__CONNECTION_STATE_DISCONNECTED_STYLE)
 
+    def slot_set_camera_enabled(self, state):
+        if state:
+            self.ui.button_start_video.setEnabled(True)
+            self.ui.label_camera_state.setText(self.__CAMERA_STATE_CONNECTED_TEXT)
+            self.ui.label_camera_state_lamp.setStyleSheet(self.__CONNECTION_STATE_CONNECTED_STYLE)
+        else:
+            self.ui.button_start_video.click()
+            self.ui.button_start_video.setEnabled(False)
+            self.ui.label_camera_state.setText(self.__CAMERA_STATE_DISCONNECTED_TEXT)
+            self.ui.label_camera_state_lamp.setStyleSheet(self.__CONNECTION_STATE_DISCONNECTED_STYLE)
     def __init_content(self):
 
         self.settings = Settings()

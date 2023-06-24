@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_windowaSzXUj.ui'
+## Form generated from reading UI file 'main_windowwPTlMF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -26,6 +26,7 @@ class Ui_window_form(object):
     def setupUi(self, window_form):
         if not window_form.objectName():
             window_form.setObjectName(u"window_form")
+        window_form.setEnabled(True)
         window_form.resize(1022, 810)
         self.main_layout = QHBoxLayout(window_form)
         self.main_layout.setObjectName(u"main_layout")
@@ -33,6 +34,7 @@ class Ui_window_form(object):
         self.control_layout.setObjectName(u"control_layout")
         self.button_start_video = QToolButton(window_form)
         self.button_start_video.setObjectName(u"button_start_video")
+        self.button_start_video.setEnabled(False)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -118,18 +120,18 @@ class Ui_window_form(object):
 
         self.image_scroll_area = QScrollArea(window_form)
         self.image_scroll_area.setObjectName(u"image_scroll_area")
-        self.image_scroll_area.setEnabled(True)
         self.image_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.image_scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.image_scroll_area.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.image_scroll_area.setWidgetResizable(True)
         self.image_scroll_area_content = QWidget()
         self.image_scroll_area_content.setObjectName(u"image_scroll_area_content")
-        self.image_scroll_area_content.setGeometry(QRect(-61, 0, 618, 773))
+        self.image_scroll_area_content.setGeometry(QRect(0, 0, 618, 773))
         self.horizontalLayout = QHBoxLayout(self.image_scroll_area_content)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.image_widget = QOpenCVWidget(self.image_scroll_area_content)
         self.image_widget.setObjectName(u"image_widget")
+        self.image_widget.setEnabled(True)
         self.image_widget.setMinimumSize(QSize(600, 400))
         self.image_widget.setStyleSheet(u"background-color: rgb(85, 255, 127);")
 
@@ -145,13 +147,31 @@ class Ui_window_form(object):
         self.connection_state_group.setObjectName(u"connection_state_group")
         self.connection_state_group.setMinimumSize(QSize(300, 0))
         self.connection_state_group.setMaximumSize(QSize(300, 16777215))
-        self.horizontalLayout_2 = QHBoxLayout(self.connection_state_group)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.label_connection_state_lamp = QLabel(self.connection_state_group)
-        self.label_connection_state_lamp.setObjectName(u"label_connection_state_lamp")
+        self.gridLayout_6 = QGridLayout(self.connection_state_group)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.horizontalSpacer = QSpacerItem(404, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_6.addItem(self.horizontalSpacer, 1, 3, 1, 1)
+
+        self.label_camera_state_lamp = QLabel(self.connection_state_group)
+        self.label_camera_state_lamp.setObjectName(u"label_camera_state_lamp")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_camera_state_lamp.sizePolicy().hasHeightForWidth())
+        self.label_camera_state_lamp.setSizePolicy(sizePolicy1)
+        self.label_camera_state_lamp.setMinimumSize(QSize(20, 20))
+        self.label_camera_state_lamp.setMaximumSize(QSize(20, 20))
+        self.label_camera_state_lamp.setStyleSheet(u"border-radius: 10px;\n"
+"background-color: rgb(255, 0, 0);\n"
+"\n"
+"\n"
+"")
+
+        self.gridLayout_6.addWidget(self.label_camera_state_lamp, 0, 0, 1, 1)
+
+        self.label_connection_state_lamp = QLabel(self.connection_state_group)
+        self.label_connection_state_lamp.setObjectName(u"label_connection_state_lamp")
         sizePolicy1.setHeightForWidth(self.label_connection_state_lamp.sizePolicy().hasHeightForWidth())
         self.label_connection_state_lamp.setSizePolicy(sizePolicy1)
         self.label_connection_state_lamp.setMinimumSize(QSize(20, 20))
@@ -162,16 +182,17 @@ class Ui_window_form(object):
 "\n"
 "")
 
-        self.horizontalLayout_2.addWidget(self.label_connection_state_lamp)
+        self.gridLayout_6.addWidget(self.label_connection_state_lamp, 1, 0, 1, 1)
+
+        self.label_camera_state = QLabel(self.connection_state_group)
+        self.label_camera_state.setObjectName(u"label_camera_state")
+
+        self.gridLayout_6.addWidget(self.label_camera_state, 0, 1, 1, 1)
 
         self.label_connection_state = QLabel(self.connection_state_group)
         self.label_connection_state.setObjectName(u"label_connection_state")
 
-        self.horizontalLayout_2.addWidget(self.label_connection_state)
-
-        self.horizontalSpacer = QSpacerItem(404, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+        self.gridLayout_6.addWidget(self.label_connection_state, 1, 1, 1, 1)
 
 
         self.parameters_layout.addWidget(self.connection_state_group)
@@ -423,8 +444,10 @@ class Ui_window_form(object):
         self.button_capture_frame.setText("")
         self.button_upload_image.setText("")
         self.button_start_draw.setText("")
-        self.connection_state_group.setTitle(QCoreApplication.translate("window_form", u"Connection state", None))
+        self.connection_state_group.setTitle(QCoreApplication.translate("window_form", u"State", None))
+        self.label_camera_state_lamp.setText("")
         self.label_connection_state_lamp.setText("")
+        self.label_camera_state.setText(QCoreApplication.translate("window_form", u"CAMERA IS OFF", None))
         self.label_connection_state.setText(QCoreApplication.translate("window_form", u"ROBOT IS NOT CONNECTED", None))
         self.roi_parameters_group.setTitle(QCoreApplication.translate("window_form", u"ROI Parameters", None))
         self.label_roi_width.setText(QCoreApplication.translate("window_form", u"ROI Width", None))

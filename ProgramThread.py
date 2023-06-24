@@ -13,11 +13,11 @@ from Settings import Settings
 class ProgramThread(QtCore.QThread):
     image_ready_signal = QtCore.Signal(np.ndarray)
     robot_connection_state_changed = QtCore.Signal(bool)
+    camera_state_changed = QtCore.Signal(bool)
 
     def slot_enable_video(self, state):
         self.__video_enabled = state
         self.__processing_enabled = False
-
 
     def slot_enable_processing(self):
         self.__video_enabled = False
@@ -25,7 +25,7 @@ class ProgramThread(QtCore.QThread):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.__run_once = True
+        self.__image_loaded = False
         
         self.__video_enabled = False
         self.__processing_enabled = False
@@ -38,64 +38,31 @@ class ProgramThread(QtCore.QThread):
         
         self.robot.start()
         while True:
+            captured_frame = None
             # Emit connection state
-            if self.robot.is_connected:
-                self.robot_connection_state_changed.emit(True)
-            else:
-                self.robot_connection_state_changed.emit(False)
-            
+            self.robot_connection_state_changed.emit(self.robot.is_connected)
+            self.camera_state_changed.emit(self.camera.is_active)
+
             if self.__video_enabled:
                 frame = self.camera.get_frame()
-                frame = cv2.rectangle(frame, self.settings.roi_rect, (255, 0, 0), 2)
-                self.image_ready_signal.emit(frame)
+                if not isinstance(frame, type(None)):
+                    frame = cv2.rectangle(frame, self.settings.roi_rect, (255, 0, 0), 2)
+                    self.image_ready_signal.emit(frame)
+                    x,y,h,w = self.settings.roi_rect
+                    self.__image_loaded = False
             elif self.__processing_enabled:
                 captured_frame = frame.copy()
-                captured_frame = captured_frame[self.settings.roi_rect[0]:self.settings.roi_rect[0] + self.settings.roi_rect[3], self.settings.roi_rect[1]:self.settings.roi_rect[1] + self.settings.roi_rect[2]]
-                captured_frame = cv2.cvtColor(captured_frame, cv2.COLOR_BGR2GRAY)
-                captured_frame = cv2.medianBlur(captured_frame, self.settings.blur_value)
+                if not self.__image_loaded:
+                    roi = captured_frame[y:y+w, x:x+h]
+                else:
+                    roi = captured_frame
+                roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+                roi = cv2.medianBlur(roi, self.settings.blur_value)
                 
-                captured_frame = cv2.cvtColor(captured_frame, cv2.COLOR_GRAY2BGR)
-                self.image_ready_signal.emit(captured_frame)
+                roi = cv2.cvtColor(roi, cv2.COLOR_GRAY2BGR)
+                self.image_ready_signal.emit(roi)
             else:
                 self.msleep(100)
 
 
-    # def timerEvent(self, event):
-    #     if (event.timerId() != self.timer.timerId()):
-    #         return
-    #     if self.__once:
-    #         self.robot = Robot(config_path='config/parameters.json')
-    #         self.robot.start()
-    #         self.camera = Camera(config_path='config/parameters.json')
-    #         self.__once = False
-    #     # Emit connection
-    #     if self.robot.is_connected:
-    #         self.robot_connection_state_changed.emit(True)
-    #     else:
-    #         self.robot_connection_state_changed.emit(False)
-    #     frame = self.camera.get_frame()
-    #     if self.video_enabled:
-    #         self.image_ready_signal.emit(frame)
 
-    # def __del__(self):
-    #     self.timer.stop()
-
-
-if __name__ == "__main__":
-    import sys
-    from PySide6 import QtWidgets, QtGui
-
-    # from ImageWidget import ImageWidget
-
-    # app = QtWidgets.QApplication(sys.argv)
-    # main_window = QtWidgets.QMainWindow()
-    # main_window.setWindowTitle("КЁРЛИНГ ВЕРСИИ ОДИН ТОЧКА НОЛЬ")
-    # main_window.showMaximized()
-    # main_widget = ImageWidget()
-    # main_window.setCentralWidget(main_widget)
-    # main_window.showMaximized()
-    # game = GameThread()
-    # game.original_image_signal.connect(main_widget.image_data_slot)
-    # sys.exit(app.exec())
-
-    # self.game.oid.connect(self.oiw.image_data_slot)
