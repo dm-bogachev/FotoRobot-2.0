@@ -1,27 +1,28 @@
 {
     "roi_rect": [
-        495,
-        163,
-        183,
-        401
+        455,
+        23,
+        397,
+        572
     ],
-    "blur_value": 1,
+    "blur_value": 3,
     "canny_values": [
-        100,
-        100
+        85,
+        44
     ],
-    "minimal_contour_length": 10,
-    "approximation_epsilon": 100,
+    "minimal_contour_length": 34,
+    "approximation_epsilon": 329,
     "paper_size": [
         210,
         297
     ],
-    "camera_id": 1,
+    "camera_id": 0,
     "resolution_width": 1920,
     "resolution_height": 1080,
     "host": "",
     "port": 48569,
     "timeout": 5,
     "debug_mode": true,
-    "separator": ";"
+    "separator": ";",
+    "appearance_filled": false
 }

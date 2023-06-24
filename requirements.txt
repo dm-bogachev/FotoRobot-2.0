@@ -1,3 +1,4 @@
+debugpy==1.6.7
 distlib==0.3.6
 filelock==3.12.2
 numpy==1.25.0

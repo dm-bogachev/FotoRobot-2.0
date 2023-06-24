@@ -8,6 +8,7 @@ class Settings:
     __MINIMAL_CONTOUR_LENGTH_STRING = 'minimal_contour_length'
     __APPROXIMATION_EPSILON_STRING = 'approximation_epsilon'
     __PAPER_SIZE_STRING = 'paper_size'
+    __CONTOUR_APPEARANCE_STRING = 'appearance_filled'
 
     # From camera class
     __CAMERA_ID_STRING = 'camera_id'
@@ -35,6 +36,7 @@ class Settings:
         self.canny_threshold = (100, 100)
         self.minimal_contour_length = 10
         self.approximation_epsilon = 100
+        self.appearance_filled = True
         #
         self.camera_id = 0
         self.camera_width = 1920
@@ -57,6 +59,7 @@ class Settings:
             self.minimal_contour_length = config[self.__MINIMAL_CONTOUR_LENGTH_STRING] 
             self.approximation_epsilon = config[self.__APPROXIMATION_EPSILON_STRING] 
             self.paper_size = config[self.__PAPER_SIZE_STRING] 
+            self.appearance_filled = config[self.__CONTOUR_APPEARANCE_STRING] 
             #
             self.camera_id = config[self.__CAMERA_ID_STRING]
             self.camera_width = config[self.__RESOLUTION_WIDTH_STRING]
@@ -85,6 +88,7 @@ class Settings:
         config[self.__MINIMAL_CONTOUR_LENGTH_STRING] = self.minimal_contour_length
         config[self.__APPROXIMATION_EPSILON_STRING] = self.approximation_epsilon
         config[self.__PAPER_SIZE_STRING]  = self.paper_size 
+        config[self.__CONTOUR_APPEARANCE_STRING] = self.appearance_filled 
         #
         config[self.__CAMERA_ID_STRING] = self.camera_id
         config[self.__RESOLUTION_WIDTH_STRING] = self.camera_width
@@ -110,4 +114,5 @@ class Settings:
             self.__load_defaults()
 
 if __name__ == '__main__':
-     settings = Settings(config_path='config/parameters.json')
+     settings = Settings()
+     settings.init(config_path='config/parameters.json')

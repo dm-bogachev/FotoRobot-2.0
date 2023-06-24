@@ -229,6 +229,33 @@
       </spacer>
      </item>
      <item>
+      <widget class="QToolButton" name="button_show_filled_contours">
+       <property name="styleSheet">
+        <string notr="true">QToolButton {border: 0px solid;}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>files/icons8-360-degrees-96.png</normaloff>
+         <normalon>files/icons8-0-degrees-96.png</normalon>files/icons8-360-degrees-96.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>96</width>
+         <height>96</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="control_layout_vertical_spacer2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -280,9 +307,6 @@
            <width>600</width>
            <height>400</height>
           </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(85, 255, 127);</string>
          </property>
         </widget>
        </item>
@@ -491,6 +515,54 @@ background-color: rgb(255, 0, 0);
          <widget class="QLabel" name="label_roi_height">
           <property name="text">
            <string>ROI Height</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="background_segmentation_group">
+       <property name="title">
+        <string>Background segmentation</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="1">
+         <widget class="QSlider" name="slider_background_segmentation_value">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="check_background_segmentation">
+          <property name="text">
+           <string>Activate</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_background_segmentation">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>0</string>
           </property>
          </widget>
         </item>
@@ -914,12 +986,12 @@ background-color: rgb(255, 0, 0);
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>949</x>
-     <y>137</y>
+     <x>952</x>
+     <y>163</y>
     </hint>
     <hint type="destinationlabel">
-     <x>985</x>
-     <y>137</y>
+     <x>988</x>
+     <y>163</y>
     </hint>
    </hints>
   </connection>
@@ -930,12 +1002,12 @@ background-color: rgb(255, 0, 0);
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>949</x>
-     <y>183</y>
+     <x>952</x>
+     <y>209</y>
     </hint>
     <hint type="destinationlabel">
-     <x>985</x>
-     <y>183</y>
+     <x>988</x>
+     <y>209</y>
     </hint>
    </hints>
   </connection>
@@ -946,12 +1018,12 @@ background-color: rgb(255, 0, 0);
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>939</x>
-     <y>340</y>
+     <x>942</x>
+     <y>428</y>
     </hint>
     <hint type="destinationlabel">
-     <x>975</x>
-     <y>340</y>
+     <x>978</x>
+     <y>428</y>
     </hint>
    </hints>
   </connection>
@@ -962,12 +1034,12 @@ background-color: rgb(255, 0, 0);
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>939</x>
-     <y>386</y>
+     <x>942</x>
+     <y>474</y>
     </hint>
     <hint type="destinationlabel">
-     <x>975</x>
-     <y>386</y>
+     <x>978</x>
+     <y>474</y>
     </hint>
    </hints>
   </connection>
@@ -978,12 +1050,12 @@ background-color: rgb(255, 0, 0);
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>933</x>
-     <y>468</y>
+     <x>936</x>
+     <y>556</y>
     </hint>
     <hint type="destinationlabel">
-     <x>969</x>
-     <y>468</y>
+     <x>972</x>
+     <y>556</y>
     </hint>
    </hints>
   </connection>
@@ -994,12 +1066,28 @@ background-color: rgb(255, 0, 0);
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>933</x>
-     <y>514</y>
+     <x>936</x>
+     <y>602</y>
     </hint>
     <hint type="destinationlabel">
-     <x>969</x>
-     <y>514</y>
+     <x>972</x>
+     <y>602</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slider_background_segmentation_value</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_background_segmentation</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>851</x>
+     <y>265</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>976</x>
+     <y>263</y>
     </hint>
    </hints>
   </connection>

@@ -22,6 +22,7 @@ class GUI(QWidget):
         if self.ui.button_start_video.isChecked():
             self.ui.button_capture_frame.setEnabled(True)
             self.ui.button_upload_image.setEnabled(False)
+            self.ui.button_start_draw.setEnabled(False)
         else:
             self.ui.button_capture_frame.setEnabled(False)
             self.ui.button_upload_image.setEnabled(True)
@@ -72,6 +73,8 @@ class GUI(QWidget):
         self.ui.button_start_video.clicked.connect(self.__button_start_video_clicked)
         self.ui.button_capture_frame.clicked.connect(self.__button_capture_frame_clicked)
         self.ui.slider_roi_width.valueChanged.connect(self.__update_settings)
+        self.ui.button_show_filled_contours.clicked.connect(self.__update_settings)
+
         self.ui.slider_roi_height.valueChanged.connect(self.__update_settings)
         self.ui.slider_canny_parameter_1.valueChanged.connect(self.__update_settings)
         self.ui.slider_canny_parameter_2.valueChanged.connect(self.__update_settings)
@@ -91,6 +94,7 @@ class GUI(QWidget):
         self.ui.slider_approximation.setValue(self.settings.approximation_epsilon)
         self.ui.line_paper_width.setText(str(self.settings.paper_size[0]))
         self.ui.line_paper_height.setText(str(self.settings.paper_size[1]))
+        self.ui.button_show_filled_contours.setChecked(self.settings.appearance_filled)
 
     def __update_settings(self):
         self.settings.roi_rect[2] = self.ui.slider_roi_width.value()
@@ -100,7 +104,7 @@ class GUI(QWidget):
         self.settings.minimal_contour_length = self.ui.slider_minimal_contour.value()
         self.settings.approximation_epsilon = self.ui.slider_approximation.value()
         self.settings.paper_size = (int(self.ui.line_paper_width.text()), int(self.ui.line_paper_height.text()))
-        
+        self.settings.appearance_filled = self.ui.button_show_filled_contours.isChecked()
         self.settings.save_settings()
 
 if __name__ == '__main__':

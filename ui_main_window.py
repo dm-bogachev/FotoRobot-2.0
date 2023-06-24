@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_windowwPTlMF.ui'
+## Form generated from reading UI file 'main_windowQTinbi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QGridLayout,
-    QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QScrollArea, QSizePolicy, QSlider, QSpacerItem,
-    QToolButton, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QCheckBox, QComboBox,
+    QGridLayout, QGroupBox, QHBoxLayout, QLabel,
+    QLineEdit, QScrollArea, QSizePolicy, QSlider,
+    QSpacerItem, QToolButton, QVBoxLayout, QWidget)
 
 from QOpenCVWidget import QOpenCVWidget
 
@@ -111,6 +111,19 @@ class Ui_window_form(object):
 
         self.control_layout.addItem(self.control_layout_vertical_spacer)
 
+        self.button_show_filled_contours = QToolButton(window_form)
+        self.button_show_filled_contours.setObjectName(u"button_show_filled_contours")
+        self.button_show_filled_contours.setStyleSheet(u"QToolButton {border: 0px solid;}")
+        icon4 = QIcon()
+        icon4.addFile(u"files/icons8-360-degrees-96.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u"files/icons8-0-degrees-96.png", QSize(), QIcon.Normal, QIcon.On)
+        self.button_show_filled_contours.setIcon(icon4)
+        self.button_show_filled_contours.setIconSize(QSize(96, 96))
+        self.button_show_filled_contours.setCheckable(True)
+        self.button_show_filled_contours.setAutoRaise(True)
+
+        self.control_layout.addWidget(self.button_show_filled_contours)
+
         self.control_layout_vertical_spacer2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.control_layout.addItem(self.control_layout_vertical_spacer2)
@@ -133,7 +146,6 @@ class Ui_window_form(object):
         self.image_widget.setObjectName(u"image_widget")
         self.image_widget.setEnabled(True)
         self.image_widget.setMinimumSize(QSize(600, 400))
-        self.image_widget.setStyleSheet(u"background-color: rgb(85, 255, 127);")
 
         self.horizontalLayout.addWidget(self.image_widget)
 
@@ -244,6 +256,33 @@ class Ui_window_form(object):
 
 
         self.parameters_layout.addWidget(self.roi_parameters_group)
+
+        self.background_segmentation_group = QGroupBox(window_form)
+        self.background_segmentation_group.setObjectName(u"background_segmentation_group")
+        self.gridLayout_7 = QGridLayout(self.background_segmentation_group)
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.slider_background_segmentation_value = QSlider(self.background_segmentation_group)
+        self.slider_background_segmentation_value.setObjectName(u"slider_background_segmentation_value")
+        self.slider_background_segmentation_value.setMinimum(1)
+        self.slider_background_segmentation_value.setMaximum(100)
+        self.slider_background_segmentation_value.setOrientation(Qt.Horizontal)
+
+        self.gridLayout_7.addWidget(self.slider_background_segmentation_value, 0, 1, 1, 1)
+
+        self.check_background_segmentation = QCheckBox(self.background_segmentation_group)
+        self.check_background_segmentation.setObjectName(u"check_background_segmentation")
+
+        self.gridLayout_7.addWidget(self.check_background_segmentation, 0, 0, 1, 1)
+
+        self.label_background_segmentation = QLabel(self.background_segmentation_group)
+        self.label_background_segmentation.setObjectName(u"label_background_segmentation")
+        self.label_background_segmentation.setMinimumSize(QSize(30, 0))
+        self.label_background_segmentation.setMaximumSize(QSize(30, 16777215))
+
+        self.gridLayout_7.addWidget(self.label_background_segmentation, 0, 2, 1, 1)
+
+
+        self.parameters_layout.addWidget(self.background_segmentation_group)
 
         self.image_processing_parameters_group = QGroupBox(window_form)
         self.image_processing_parameters_group.setObjectName(u"image_processing_parameters_group")
@@ -434,6 +473,7 @@ class Ui_window_form(object):
         self.slider_canny_parameter_2.valueChanged.connect(self.label_canny_parameter_2_value.setNum)
         self.slider_minimal_contour.valueChanged.connect(self.label_minimal_contour_value.setNum)
         self.slider_approximation.valueChanged.connect(self.label_approximation_value.setNum)
+        self.slider_background_segmentation_value.valueChanged.connect(self.label_background_segmentation.setNum)
 
         QMetaObject.connectSlotsByName(window_form)
     # setupUi
@@ -444,6 +484,7 @@ class Ui_window_form(object):
         self.button_capture_frame.setText("")
         self.button_upload_image.setText("")
         self.button_start_draw.setText("")
+        self.button_show_filled_contours.setText("")
         self.connection_state_group.setTitle(QCoreApplication.translate("window_form", u"State", None))
         self.label_camera_state_lamp.setText("")
         self.label_connection_state_lamp.setText("")
@@ -454,6 +495,9 @@ class Ui_window_form(object):
         self.label_roi_width_value.setText(QCoreApplication.translate("window_form", u"0", None))
         self.label_roi_height_value.setText(QCoreApplication.translate("window_form", u"0", None))
         self.label_roi_height.setText(QCoreApplication.translate("window_form", u"ROI Height", None))
+        self.background_segmentation_group.setTitle(QCoreApplication.translate("window_form", u"Background segmentation", None))
+        self.check_background_segmentation.setText(QCoreApplication.translate("window_form", u"Activate", None))
+        self.label_background_segmentation.setText(QCoreApplication.translate("window_form", u"0", None))
         self.image_processing_parameters_group.setTitle(QCoreApplication.translate("window_form", u"Processing parameters", None))
         self.label_blur_label.setText(QCoreApplication.translate("window_form", u"Blur value", None))
         self.canny_parameters_group.setTitle(QCoreApplication.translate("window_form", u"Canny parameters", None))
