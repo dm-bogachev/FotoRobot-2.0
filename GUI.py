@@ -83,6 +83,9 @@ class GUI(QWidget):
         self.ui.combo_blur_level.currentIndexChanged.connect(self.__update_settings)
         self.ui.line_paper_width.textChanged.connect(self.__update_settings)
         self.ui.line_paper_height.textChanged.connect(self.__update_settings)
+        #
+        self.ui.check_background_segmentation.stateChanged.connect(self.__update_settings)
+        self.ui.slider_background_segmentation_value.valueChanged.connect(self.__update_settings)
 
     def __load_settings(self):
         self.ui.slider_roi_width.setValue(self.settings.roi_rect[2])
@@ -95,6 +98,9 @@ class GUI(QWidget):
         self.ui.line_paper_width.setText(str(self.settings.paper_size[0]))
         self.ui.line_paper_height.setText(str(self.settings.paper_size[1]))
         self.ui.button_show_filled_contours.setChecked(self.settings.appearance_filled)
+        #
+        self.ui.check_background_segmentation.setChecked(self.settings.background_segmentation_state)
+        self.ui.slider_background_segmentation_value.setValue(self.settings.background_segmentation_value)
 
     def __update_settings(self):
         self.settings.roi_rect[2] = self.ui.slider_roi_width.value()
@@ -105,6 +111,10 @@ class GUI(QWidget):
         self.settings.approximation_epsilon = self.ui.slider_approximation.value()
         self.settings.paper_size = (int(self.ui.line_paper_width.text()), int(self.ui.line_paper_height.text()))
         self.settings.appearance_filled = self.ui.button_show_filled_contours.isChecked()
+        #
+        self.settings.background_segmentation_state = self.ui.check_background_segmentation.isChecked()
+        self.settings.background_segmentation_value = self.ui.slider_background_segmentation_value.value()
+        #
         self.settings.save_settings()
 
 if __name__ == '__main__':

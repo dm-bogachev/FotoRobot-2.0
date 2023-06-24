@@ -1,17 +1,17 @@
 {
     "roi_rect": [
-        455,
-        23,
-        397,
-        572
+        707,
+        148,
+        235,
+        310
     ],
     "blur_value": 3,
     "canny_values": [
-        85,
-        44
+        82,
+        18
     ],
-    "minimal_contour_length": 34,
-    "approximation_epsilon": 329,
+    "minimal_contour_length": 24,
+    "approximation_epsilon": 172,
     "paper_size": [
         210,
         297
@@ -24,5 +24,7 @@
     "timeout": 5,
     "debug_mode": true,
     "separator": ";",
-    "appearance_filled": false
+    "appearance_filled": false,
+    "background_segmentation_value": 87,
+    "background_segmentation_status": true
 }

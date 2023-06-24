@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QFileDialog, QWidget
 from PySide6.QtGui import QImage
 import debugpy
 
+from cvzone.SelfiSegmentationModule import SelfiSegmentation
 
 from Robot import Robot
 from Settings import Settings
@@ -54,6 +55,7 @@ class ProgramThread(QtCore.QThread):
         self.camera = Camera(config_path="config/parameters.json")
         self.settings = Settings(config_path="config/parameters.json")
         self.robot.start()
+        self.segmentor=SelfiSegmentation()
         self.working_frame = None
 
         while True:
@@ -64,6 +66,9 @@ class ProgramThread(QtCore.QThread):
             if self.__video_enabled:
                 captured_frame = self.camera.get_frame()
                 if not isinstance(captured_frame, type(None)):
+                    if self.settings.background_segmentation_state:
+                        captured_frame = cv2.medianBlur(captured_frame, self.settings.blur_value)
+                        captured_frame = self.segmentor.removeBG(captured_frame,(255,255,255),threshold=self.settings.background_segmentation_value/100)
                     captured_frame = cv2.rectangle(captured_frame, self.settings.roi_rect, self.__COLOR_GREEN, 1)
                     self.image_ready_signal.emit(captured_frame)
                     x,y,h,w = self.settings.roi_rect

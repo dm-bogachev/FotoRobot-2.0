@@ -9,6 +9,8 @@ class Settings:
     __APPROXIMATION_EPSILON_STRING = 'approximation_epsilon'
     __PAPER_SIZE_STRING = 'paper_size'
     __CONTOUR_APPEARANCE_STRING = 'appearance_filled'
+    __BACKGROUND_SEGMENTATION_VALUE = 'background_segmentation_value'
+    __BACKGROUND_SEGMENTATION_STATE = 'background_segmentation_status'
 
     # From camera class
     __CAMERA_ID_STRING = 'camera_id'
@@ -37,6 +39,9 @@ class Settings:
         self.minimal_contour_length = 10
         self.approximation_epsilon = 100
         self.appearance_filled = True
+        self.background_segmentation_value = 70
+        self.background_segmentation_state = False
+
         #
         self.camera_id = 0
         self.camera_width = 1920
@@ -60,6 +65,8 @@ class Settings:
             self.approximation_epsilon = config[self.__APPROXIMATION_EPSILON_STRING] 
             self.paper_size = config[self.__PAPER_SIZE_STRING] 
             self.appearance_filled = config[self.__CONTOUR_APPEARANCE_STRING] 
+            self.background_segmentation_value = config[self.__BACKGROUND_SEGMENTATION_VALUE]
+            self.background_segmentation_state = config[self.__BACKGROUND_SEGMENTATION_STATE]
             #
             self.camera_id = config[self.__CAMERA_ID_STRING]
             self.camera_width = config[self.__RESOLUTION_WIDTH_STRING]
@@ -89,6 +96,8 @@ class Settings:
         config[self.__APPROXIMATION_EPSILON_STRING] = self.approximation_epsilon
         config[self.__PAPER_SIZE_STRING]  = self.paper_size 
         config[self.__CONTOUR_APPEARANCE_STRING] = self.appearance_filled 
+        config[self.__BACKGROUND_SEGMENTATION_VALUE] = self.background_segmentation_value
+        config[self.__BACKGROUND_SEGMENTATION_STATE] = self.background_segmentation_state
         #
         config[self.__CAMERA_ID_STRING] = self.camera_id
         config[self.__RESOLUTION_WIDTH_STRING] = self.camera_width

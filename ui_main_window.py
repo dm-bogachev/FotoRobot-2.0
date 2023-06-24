@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_windowQTinbi.ui'
+## Form generated from reading UI file 'main_windowxSxHzw.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -259,6 +259,8 @@ class Ui_window_form(object):
 
         self.background_segmentation_group = QGroupBox(window_form)
         self.background_segmentation_group.setObjectName(u"background_segmentation_group")
+        self.background_segmentation_group.setMinimumSize(QSize(300, 0))
+        self.background_segmentation_group.setMaximumSize(QSize(300, 16777215))
         self.gridLayout_7 = QGridLayout(self.background_segmentation_group)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.slider_background_segmentation_value = QSlider(self.background_segmentation_group)

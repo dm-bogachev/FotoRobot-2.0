@@ -523,6 +523,18 @@ background-color: rgb(255, 0, 0);
      </item>
      <item>
       <widget class="QGroupBox" name="background_segmentation_group">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="title">
         <string>Background segmentation</string>
        </property>
