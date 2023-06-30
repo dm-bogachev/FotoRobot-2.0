@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_windowxSxHzw.ui'
+## Form generated from reading UI file 'main_windowZQAZIR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -17,8 +17,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QCheckBox, QComboBox,
     QGridLayout, QGroupBox, QHBoxLayout, QLabel,
-    QLineEdit, QScrollArea, QSizePolicy, QSlider,
-    QSpacerItem, QToolButton, QVBoxLayout, QWidget)
+    QLineEdit, QProgressBar, QScrollArea, QSizePolicy,
+    QSlider, QSpacerItem, QToolButton, QVBoxLayout,
+    QWidget)
 
 from QOpenCVWidget import QOpenCVWidget
 
@@ -27,7 +28,7 @@ class Ui_window_form(object):
         if not window_form.objectName():
             window_form.setObjectName(u"window_form")
         window_form.setEnabled(True)
-        window_form.resize(1022, 810)
+        window_form.resize(1163, 810)
         self.main_layout = QHBoxLayout(window_form)
         self.main_layout.setObjectName(u"main_layout")
         self.control_layout = QVBoxLayout()
@@ -131,7 +132,41 @@ class Ui_window_form(object):
 
         self.main_layout.addLayout(self.control_layout)
 
-        self.image_scroll_area = QScrollArea(window_form)
+        self.widget = QWidget(window_form)
+        self.widget.setObjectName(u"widget")
+        self.widget.setMinimumSize(QSize(600, 0))
+        self.gridLayout_8 = QGridLayout(self.widget)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.gridLayout_9 = QGridLayout()
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.label_progress = QLabel(self.widget)
+        self.label_progress.setObjectName(u"label_progress")
+        self.label_progress.setEnabled(True)
+
+        self.gridLayout_9.addWidget(self.label_progress, 0, 0, 1, 1)
+
+        self.label_drawn = QLabel(self.widget)
+        self.label_drawn.setObjectName(u"label_drawn")
+
+        self.gridLayout_9.addWidget(self.label_drawn, 1, 0, 1, 1)
+
+        self.progress_sending = QProgressBar(self.widget)
+        self.progress_sending.setObjectName(u"progress_sending")
+        self.progress_sending.setEnabled(True)
+        self.progress_sending.setValue(0)
+
+        self.gridLayout_9.addWidget(self.progress_sending, 0, 1, 1, 1)
+
+        self.progress_drawn = QProgressBar(self.widget)
+        self.progress_drawn.setObjectName(u"progress_drawn")
+        self.progress_drawn.setValue(0)
+
+        self.gridLayout_9.addWidget(self.progress_drawn, 1, 1, 1, 1)
+
+
+        self.gridLayout_8.addLayout(self.gridLayout_9, 0, 0, 1, 1)
+
+        self.image_scroll_area = QScrollArea(self.widget)
         self.image_scroll_area.setObjectName(u"image_scroll_area")
         self.image_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.image_scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -139,7 +174,7 @@ class Ui_window_form(object):
         self.image_scroll_area.setWidgetResizable(True)
         self.image_scroll_area_content = QWidget()
         self.image_scroll_area_content.setObjectName(u"image_scroll_area_content")
-        self.image_scroll_area_content.setGeometry(QRect(0, 0, 618, 773))
+        self.image_scroll_area_content.setGeometry(QRect(0, 0, 618, 693))
         self.horizontalLayout = QHBoxLayout(self.image_scroll_area_content)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.image_widget = QOpenCVWidget(self.image_scroll_area_content)
@@ -151,7 +186,10 @@ class Ui_window_form(object):
 
         self.image_scroll_area.setWidget(self.image_scroll_area_content)
 
-        self.main_layout.addWidget(self.image_scroll_area)
+        self.gridLayout_8.addWidget(self.image_scroll_area, 3, 0, 1, 1)
+
+
+        self.main_layout.addWidget(self.widget)
 
         self.parameters_layout = QVBoxLayout()
         self.parameters_layout.setObjectName(u"parameters_layout")
@@ -182,6 +220,16 @@ class Ui_window_form(object):
 
         self.gridLayout_6.addWidget(self.label_camera_state_lamp, 0, 0, 1, 1)
 
+        self.label_camera_state = QLabel(self.connection_state_group)
+        self.label_camera_state.setObjectName(u"label_camera_state")
+
+        self.gridLayout_6.addWidget(self.label_camera_state, 0, 1, 1, 1)
+
+        self.label_connection_state = QLabel(self.connection_state_group)
+        self.label_connection_state.setObjectName(u"label_connection_state")
+
+        self.gridLayout_6.addWidget(self.label_connection_state, 1, 1, 1, 1)
+
         self.label_connection_state_lamp = QLabel(self.connection_state_group)
         self.label_connection_state_lamp.setObjectName(u"label_connection_state_lamp")
         sizePolicy1.setHeightForWidth(self.label_connection_state_lamp.sizePolicy().hasHeightForWidth())
@@ -195,16 +243,6 @@ class Ui_window_form(object):
 "")
 
         self.gridLayout_6.addWidget(self.label_connection_state_lamp, 1, 0, 1, 1)
-
-        self.label_camera_state = QLabel(self.connection_state_group)
-        self.label_camera_state.setObjectName(u"label_camera_state")
-
-        self.gridLayout_6.addWidget(self.label_camera_state, 0, 1, 1, 1)
-
-        self.label_connection_state = QLabel(self.connection_state_group)
-        self.label_connection_state.setObjectName(u"label_connection_state")
-
-        self.gridLayout_6.addWidget(self.label_connection_state, 1, 1, 1, 1)
 
 
         self.parameters_layout.addWidget(self.connection_state_group)
@@ -487,11 +525,13 @@ class Ui_window_form(object):
         self.button_upload_image.setText("")
         self.button_start_draw.setText("")
         self.button_show_filled_contours.setText("")
+        self.label_progress.setText(QCoreApplication.translate("window_form", u"Sending points", None))
+        self.label_drawn.setText(QCoreApplication.translate("window_form", u"Drawn points", None))
         self.connection_state_group.setTitle(QCoreApplication.translate("window_form", u"State", None))
         self.label_camera_state_lamp.setText("")
-        self.label_connection_state_lamp.setText("")
         self.label_camera_state.setText(QCoreApplication.translate("window_form", u"CAMERA IS OFF", None))
         self.label_connection_state.setText(QCoreApplication.translate("window_form", u"ROBOT IS NOT CONNECTED", None))
+        self.label_connection_state_lamp.setText("")
         self.roi_parameters_group.setTitle(QCoreApplication.translate("window_form", u"ROI Parameters", None))
         self.label_roi_width.setText(QCoreApplication.translate("window_form", u"ROI Width", None))
         self.label_roi_width_value.setText(QCoreApplication.translate("window_form", u"0", None))
